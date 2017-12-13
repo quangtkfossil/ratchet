@@ -15,8 +15,11 @@ func CSVString(v interface{}) string {
 	switch v.(type) {
 	case nil:
 		return ""
-	default:
+	case string:
 		return fmt.Sprintf("%v", v)
+	default:
+		result, _ := json.Marshal(v)
+		return string(result)
 	}
 }
 
